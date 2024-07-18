@@ -1,7 +1,7 @@
 const express = require("express");
 
-const router = express().router();
+const router = express.Router();
 
-module.exports = {
-  router,
-};
+
+
+module.exports = router;
