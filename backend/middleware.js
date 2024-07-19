@@ -11,9 +11,13 @@ const authMiddleware = (req, res, next) => {
   }
   try {
     const token = authHeader.split(" ")[1];
-    const verify = jwt.verify(token, JWT_SECRET);
-    req.userId = verify._id;
-    next();
+    const decoded = jwt.verify(token, JWT_SECRET);
+    if (decoded.userId) {
+      req.userId = decoded._id;
+      next();
+    } else {
+      return res.status(403).json({});
+    }
   } catch (err) {
     return res.status(403).json({
       message: "something went wrong",
