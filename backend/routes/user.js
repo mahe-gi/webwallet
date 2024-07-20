@@ -46,12 +46,12 @@ router.post("/signup", async (req, res) => {
     balance: 1 + Math.random() * 10000,
   });
 
-  const token = jwt.sign({ userId }, JWT_SECRET);
+  // const token = jwt.sign({ userId }, JWT_SECRET);
 
   res.status(200).send({
     message: "User created successfully",
     //sending back token when signup
-    token: token,
+    // token: token,
   });
 });
 //sign in route starts from here
@@ -114,7 +114,7 @@ router.put("/", authMiddleware, async (req, res) => {
   });
 });
 
-router.get("/bulk", async (req, res) => {
+router.get("/bulk", authMiddleware, async (req, res) => {
   const filter = req.query.filter || "";
 
   const users = await User.find({
