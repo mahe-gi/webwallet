@@ -1,4 +1,6 @@
-function SendMoney() {
+import React from "react";
+
+export default function SendMoney() {
   return (
     <div class="flex justify-center h-screen bg-gray-100">
       <div className="h-full flex flex-col justify-center">
@@ -7,11 +9,11 @@ function SendMoney() {
             <h2 class="text-3xl font-bold text-center">Send Money</h2>
           </div>
           <div class="p-6">
-            <div class="flex items-center space-x-4 pb-4">
+            <div class="flex items-center space-x-4">
               <div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center">
-                <span class="text-2xl text-white">{"M"}</span>
+                <span class="text-2xl text-white">A</span>
               </div>
-              <h3 class="text-2xl font-semibold">{"Mahesh"}</h3>
+              <h3 class="text-2xl font-semibold">Friend's Name</h3>
             </div>
             <div class="space-y-4">
               <div class="space-y-2">
@@ -37,5 +39,3 @@ function SendMoney() {
     </div>
   );
 }
-
-export default SendMoney;
