@@ -140,5 +140,27 @@ router.get("/bulk", authMiddleware, async (req, res) => {
     })),
   });
 });
+router.get("/me", (req, res) => {
+  const authHeader = req.headers.authorization;
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return res.status(403).json({
+      status: "token invalid",
+    });
+  }
+
+  const token = authHeader.split(" ")[1];
+
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+
+    res.status(200).json({
+      msg: "success",
+    });
+  } catch (err) {
+    return res.status(403).json({
+      status: "something went wrong",
+    });
+  }
+});
 
 module.exports = router;

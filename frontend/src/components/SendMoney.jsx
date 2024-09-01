@@ -13,7 +13,7 @@ export default function SendMoney() {
               <div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center">
                 <span class="text-2xl text-white">A</span>
               </div>
-              <h3 class="text-2xl font-semibold">Friend's Name</h3>
+              <h3 class="text-2xl font-semibold">friends name</h3>
             </div>
             <div class="space-y-4">
               <div class="space-y-2">

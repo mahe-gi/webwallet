@@ -1,14 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "./export";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Users() {
-  const [users, setUsers] = useState([
-    {
-      firstName: "Harkirat",
-      lastName: "Singh",
-      _id: 1,
-    },
-  ]);
+  const [users, setUsers] = useState([]);
+  const [filter, setfilter] = useState("");
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/v1/user/bulk?filter=" + filter, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+      .then(async (res) => {
+        const response = res.data;
+        setUsers(response.user);
+      });
+  }, [filter]);
 
   return (
     <>
@@ -17,6 +27,9 @@ function Users() {
         <input
           type="text"
           placeholder="Search users..."
+          onChange={(e) => {
+            setfilter(e.target.value);
+          }}
           className="w-full px-2 py-1 border rounded border-slate-200"></input>
       </div>
       <div>
@@ -29,6 +42,11 @@ function Users() {
 }
 
 function User({ user }) {
+  const navigate = useNavigate();
+  function handleclick() {
+    navigate("/send?id=" + user._id + "&name=" + user.firstName);
+  }
+
   return (
     <div className="flex justify-between">
       <div className="flex">
@@ -45,7 +63,7 @@ function User({ user }) {
       </div>
 
       <div className="flex flex-col justify-center h-ful">
-        <Button label={"Send Money"} />
+        <Button label={"Send Money"} onClick={handleclick} />
       </div>
     </div>
   );
