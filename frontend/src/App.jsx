@@ -1,4 +1,4 @@
-import React from "react";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Dashboard, SendMoney, Signin, Signup } from "./pages/export";
 import Loading from "./pages/Loading";

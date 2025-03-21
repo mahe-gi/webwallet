@@ -1,11 +1,15 @@
 import axios from "axios";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Bounce, toast, ToastContainer } from "react-toastify";
 function SendMoney() {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
   const name = searchParams.get("name");
   const [amount, setAmount] = useState(0);
+
+  const navigate = useNavigate();
 
   function handleTransfer() {
     axios
@@ -21,8 +25,37 @@ function SendMoney() {
           },
         }
       )
-      .then((res) => {
-        alert(res.data.message);
+      .then(() => {
+        toast.success('Transaction succesfull !', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+          });
+       setTimeout(()=>{
+        navigate("/dashboard");
+       },1000)
+      })
+      .catch(() => {
+        toast.error("Transaction cancelled !", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
+        setTimeout(()=>{
+          navigate("/dashboard");
+         },1000)
       });
   }
 
@@ -46,7 +79,8 @@ function SendMoney() {
               <div className="space-y-2">
                 <label
                   className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  htmlFor="amount">
+                  htmlFor="amount"
+                >
                   Amount (in Rs)
                 </label>
                 <input
@@ -61,9 +95,23 @@ function SendMoney() {
               </div>
               <button
                 onClick={handleTransfer}
-                className="justify-center rounded-md text-sm font-medium ring-offset-background transition-colors h-10 px-4 py-2 w-full bg-green-500 text-white">
+                className="justify-center rounded-md text-sm font-medium ring-offset-background transition-colors h-10 px-4 py-2 w-full bg-green-500 text-white"
+              >
                 Initiate Transfer
               </button>
+              <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                transition={Bounce}
+              />
             </div>
           </div>
         </div>

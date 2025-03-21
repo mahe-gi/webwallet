@@ -8,6 +8,7 @@ import {
 } from "../components/export";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Bounce, toast, ToastContainer } from "react-toastify";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -28,15 +29,54 @@ export default function Signup() {
         }
       );
       if (response.status === 200) {
-        alert("Signup successful");
+        toast.success("Account created !", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Bounce,
+        });
+       
+      setTimeout(()=>{
         navigate("/signin");
+      },1000)
+
       } else if (response.status === 201) {
-        alert("Email already taken");
-        navigate("/signin");
+
+        toast.warn('Email already taken !', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+          });
+        setTimeout(()=>{
+          navigate("/signin");
+        },1000)
       }
     } catch (error) {
-      console.error("Signup error:", error);
-      alert("An error occurred during signup.");
+
+
+      toast.error('Err while signin!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        });
+
     }
   };
 
@@ -76,6 +116,19 @@ export default function Signup() {
           />
           <div className=" pt-4">
             <Button onClick={handleSignup} label="Signup" />
+            <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick={false}
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="colored"
+              transition={Bounce}
+            />
           </div>
           <BottomWarning
             label="Already have an account "
