@@ -58,9 +58,12 @@ function Signin() {
   };
 
   return (
-    <div className="bg-slate-300 h-screen flex justify-center">
-      <div className="flex flex-col justify-center">
-        <div className="rounded-lg bg-white w-80 text-center p-2 h-max px-4">
+    <div className="min-h-screen bg-slate-100/70 flex items-center justify-center p-4 sm:p-6">
+      <div className="w-full max-w-md">
+        <div className="bg-white border border-slate-200/80 shadow-xl shadow-slate-200/50 rounded-2xl p-6 sm:p-8 text-center">
+          <div className="text-xl font-extrabold text-slate-900 tracking-tight mb-1">
+            WebWallet
+          </div>
           <Heading label={"Sign in"} />
           <SubHeading label={"Enter your credentials to access your account"} />
           <InputBox
@@ -71,14 +74,14 @@ function Signin() {
             label={"Email"}
           />
           <InputBox
-            placeholder="123456"
+            placeholder="••••••••"
             label={"Password"}
             onchange={(e) => {
               setPassword(e.target.value);
             }}
           />
-          <div className="pt-4">
-            <Button label={"Sign in"} onClick={handleClick} />
+          <div className="pt-3">
+            <Button label={"Sign In"} onClick={handleClick} />
             <ToastContainer
               position="top-right"
               autoClose={5000}
@@ -95,7 +98,7 @@ function Signin() {
           </div>
           <BottomWarning
             label={"Don't have an account?"}
-            buttontext={"Sign up"}
+            buttontext={"Sign Up"}
             to={"/signup"}
           />
         </div>
@@ -105,3 +108,4 @@ function Signin() {
 }
 
 export default Signin;
+

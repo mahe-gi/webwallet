@@ -1,22 +1,33 @@
 import { useNavigate } from "react-router-dom";
-export default function AppBar() {
-const navigate = useNavigate();
 
- const handleLogout = () => {
+export default function AppBar() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/signin");
-  }
-
+  };
 
   return (
-    <div className="shadow h-14 flex justify-between px-8">
-      <div className="flex flex-col justify-center h-full ml-4">Wallet</div>
-      <div className="flex">
-        <div className="flex flex-col justify-center h-full mr-4 cursor-pointer text-red-400" onClick={handleLogout}>logout </div>
-        <div className="rounded-full h-12 w-12 bg-slate-200 flex justify-center mt-1 mr-2 cursor-pointer ">
-          <div className="flex flex-col justify-center h-full text-xl" >U</div>
+    <header className="sticky top-0 z-30 bg-white/80 backdrop-blur-md border-b border-slate-200/80 shadow-2xs">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div className="flex items-center">
+          <span className="font-extrabold text-xl text-slate-900 tracking-tight">WebWallet</span>
+        </div>
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            className="text-xs font-semibold text-rose-500 hover:text-rose-600 hover:bg-rose-50 border border-rose-100/60 px-3 py-1.5 rounded-lg transition-all cursor-pointer capitalize"
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
+          <div className="h-9 w-9 rounded-full bg-slate-900 text-white font-bold text-sm flex items-center justify-center ring-2 ring-slate-100 shadow-xs cursor-pointer">
+            <span>U</span>
+          </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 }
+

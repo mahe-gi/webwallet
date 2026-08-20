@@ -81,41 +81,44 @@ export default function Signup() {
   };
 
   return (
-    <div className="bg-slate-300 h-screen flex justify-center">
-      <div className="flex flex-col justify-center">
-        <div className="rounded-lg bg-white w-80 text-center p-2 h-max px-4">
+    <div className="min-h-screen bg-slate-100/70 flex items-center justify-center p-4 sm:p-6">
+      <div className="w-full max-w-md">
+        <div className="bg-white border border-slate-200/80 shadow-xl shadow-slate-200/50 rounded-2xl p-6 sm:p-8 text-center">
+          <div className="text-xl font-extrabold text-slate-900 tracking-tight mb-1">
+            WebWallet
+          </div>
           <Heading label="Signup" />
-          <SubHeading label="enter your information to create an account" />
+          <SubHeading label="Enter your information to create an account" />
           <InputBox
             onchange={(e) => {
               setFirstname(e.target.value);
             }}
-            label="firstName"
+            label="First Name"
             placeholder="mahesh"
           />
           <InputBox
             onchange={(e) => {
               setLastname(e.target.value);
             }}
-            label="lastName"
-            placeholder="yadav "
+            label="Last Name"
+            placeholder="yadav"
           />
           <InputBox
             onchange={(e) => {
               setUsername(e.target.value);
             }}
-            label="email"
+            label="Email"
             placeholder="example@gmail.com"
           />
           <InputBox
             onchange={(e) => {
               setPassword(e.target.value);
             }}
-            label="password"
-            placeholder="12345"
+            label="Password"
+            placeholder="••••••••"
           />
-          <div className=" pt-4">
-            <Button onClick={handleSignup} label="Signup" />
+          <div className="pt-3">
+            <Button onClick={handleSignup} label="Sign Up" />
             <ToastContainer
               position="top-right"
               autoClose={5000}
@@ -131,8 +134,8 @@ export default function Signup() {
             />
           </div>
           <BottomWarning
-            label="Already have an account "
-            buttontext="signin"
+            label="Already have an account?"
+            buttontext="Sign In"
             to={"/signin"}
           />
         </div>
@@ -140,3 +143,4 @@ export default function Signup() {
     </div>
   );
 }
+

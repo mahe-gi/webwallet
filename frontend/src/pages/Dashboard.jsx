@@ -21,15 +21,15 @@ function Dashboard() {
       });
   });
   return (
-    <div>
-      {/* app bar to be implemented */}
+    <div className="min-h-screen bg-slate-50/60 pb-16">
       <AppBar />
-      <div className="m-8">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         <Balance value={balance} />
         <Users />
-      </div>
+      </main>
     </div>
   );
 }
 
 export default Dashboard;
+
